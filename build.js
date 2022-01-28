@@ -178,9 +178,10 @@ const generateCompleteMD = async (tree, options) => {
         //title
         MD += `\n\n## ${name}`;
         if (name !== options.HOMEPAGE_NAME) {
-            if (options.INCLUDE_BREADCRUMBS)
+            if (options.INCLUDE_BREADCRUMBS) {
                 MD += `\n\n\`${item.dir.replace(options.ROOT_FOLDER, '')}\``;
-            MD += `\n\n[${options.HOMEPAGE_NAME}](#${encodeURIPath(options.PROJECT_NAME).replace(/%20/g, '-')})`;
+                MD += `\n\n[${options.HOMEPAGE_NAME}](#${encodeURIPath(options.PROJECT_NAME).replace(/%20/g, '-')})`;
+            }
         }
 
         //concatenate markdown files
