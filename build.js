@@ -197,7 +197,7 @@ const generateCompleteMD = async (tree, options) => {
                 MD += '\n\n';
 
                 let diagramUrl = encodeURIPath(path.join(
-                    path.dirname(pumlFile.dir),
+                    item.dir.replace(options.ROOT_FOLDER, '.'),
                     path.parse(pumlFile.dir).name + `.${options.DIAGRAM_FORMAT}`
                 ));
                 if (!options.GENERATE_LOCAL_IMAGES)
