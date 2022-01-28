@@ -165,10 +165,12 @@ const generateCompleteMD = async (tree, options) => {
     //title
     let MD = `# ${options.PROJECT_NAME}`;
     //table of contents
-    let tableOfContents = '';
-    for (const item of tree)
-        tableOfContents += `${'  '.repeat(item.level - 1)}* [${item.name}](#${encodeURIPath(item.name).replace(/%20/g, '-')})\n`;
-    MD += `\n\n${tableOfContents}\n---`;
+    if (options.INCLUDE_TABLE_OF_CONTENTS) {
+        let tableOfContents = '';
+        for (const item of tree)
+            tableOfContents += `$ {'  '.repeat(item.level - 1)}* [$ {item.name}](#$ {encodeURIPath(item.name).replace(/%20/g, '-')})\n`;
+        MD += `\n\n$ {tableOfContents}\n---`;
+    }
 
     for (const item of tree) {
         let name = getFolderName(item.dir, options.ROOT_FOLDER, options.HOMEPAGE_NAME);
