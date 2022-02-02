@@ -217,11 +217,13 @@ const generateCompleteMD = async (tree, options) => {
 
                     MD += `\n![${path.parse(pumlFile.dir).name}](data:${getMime(options.DIAGRAM_FORMAT)};base64,${imgContent})\n`;
 
-                    let diagramLink = `\n[Download ${path.parse(pumlFile.dir).name} diagram](${encodeURIPath(path.join(
-                        item.dir.replace(options.ROOT_FOLDER, ''),
-                        diagramUrl
-                    ))} ':ignore')`;
-                    MD += diagramLink;
+                    if (options.INCLUDE_LINK_TO_DIAGRAM) {
+                        let diagramLink = `\n[Download ${path.parse(pumlFile.dir).name} diagram](${encodeURIPath(path.join(
+                            item.dir.replace(options.ROOT_FOLDER, ''),
+                            diagramUrl
+                        ))} ':ignore')`;
+                        MD += diagramLink;
+                    }
                 } else {
                     let diagramImage = `![diagram](${diagramUrl})`;
                     let diagramLink = `[Go to ${path.parse(pumlFile.dir).name} diagram](${encodeURIPath(path.join(
